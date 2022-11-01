@@ -12,6 +12,9 @@
    <body>
       <!-- Registration Form  -->
       <div class="container m-5 p-3">
+        <a href="{{ route('getCountry') }}"><button type="button" class="btn btn-outline-success">Add Country</button></a>
+        <a href="#"><button type="button" class="btn btn-outline-danger">Add State</button></a>
+        <a href="#"><button type="button" class="btn btn-outline-primary">Add City</button></a>
         <div class="col-md-12 m-5">
           <div class="form-group">
             <label for="exampleInputEmail1" class="form-label">Country</label>

@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [DropdownController::class, 'index']);
+Route::get('/country', [DropdownController::class, 'gCountry'])->name('getCountry');
+Route::post('/store-country', [DropdownController::class, 'sCountry'])->name('storeCountry');
