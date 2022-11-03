@@ -18,27 +18,25 @@
                 <label for="exampleInputEmail1" class="form-label">Country</label>
                 <select class="form-control " name="country_id" id="country_id" aria-label="Default select example">
                   <option selected>Choose an option</option>
-                  @foreach($countryList as $cList)
-                    <option value="{{$cList->id}}">{{$cList->name}}
+                  @foreach($countries as $data)
+                    <option value="{{$data->id}}">{{$data->name}}
                   @endforeach
                 </select>
-                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
+
             <div class="mb-12 mt-3">
                 <label for="exampleInputEmail1" class="form-label">State</label>
-                <select class="form-control " name="state_id" aria-label="Default select example">
+                <select class="form-control" name="state_id" id="state_id" aria-label="Default select example">
                   <option selected>Choose an option</option>
-                  @foreach($allState as $s)
-                    <option value="{{$s->id}}">{{$s->state}}</option>
-                  @endforeach
+                  
                 </select>
-                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
+            
             <div class="mb-12 mt-3">
                 <label for="exampleInputEmail1" class="form-label">City</label>
                 <input type="text" class="form-control p-3" id="exampleInputEmail1" aria-describedby="emailHelp" name="city" id="city_id" placeholder="Enter State Name" required>
-                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
+            
             <div class="mt-3">
                 <button type="submit" name="submit" class="btn btn-primary">Save</button>
             </div>   
@@ -50,22 +48,30 @@
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-      <script>
-        jQuery(document).ready(function(){
-          jQuery('#country_id').change(function() {
-            let cid = jQuery(this).val();
-            jQuery.ajax({
-              url: '/store-city',
-              type:'post',
-              data: 'cid='+cid+'&_token={{csrf_token()}}'
-              success: function(result) {
-                jQuery('#state_id').html(result)
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+      
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('#country_id').change(function(event) {
+            var idCountry = this.value;
+            // alert(idCountry);
+            $('#state_id').html('');
+            $.ajax({
+              url: "{{url('/fetch-state')}}",
+              type: 'POST',
+              dataType: 'json',
+              data: {country_id: idCountry,_token:"{{ csrf_token() }}"},
+              success:function(response){
+                // console.log(response);
+                $('#state_id').html('<option value=""> Select State </option>');
+                $.each(response.states, function(index, val) {
+                  $('#state_id').append('<option value="'+val.id+'"> '+val.name+' </option>');
+                });
               }
             });
           });
         });
-      </script> -->
+      </script>
    </body>
 </html>

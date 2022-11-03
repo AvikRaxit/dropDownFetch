@@ -18,8 +18,8 @@
                 <label for="exampleInputEmail1" class="form-label">Country</label>
                 <select class="form-control " name="country_id" aria-label="Default select example" required>
                   <option selected>Choose an option</option>
-                  @foreach($countryList as $cList)
-                    <option value="{{$cList->id}}">{{$cList->name}}
+                  @foreach($countries as $data)
+                    <option value="{{$data->id}}">{{$data->name}}
                   @endforeach
                 </select>
                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->

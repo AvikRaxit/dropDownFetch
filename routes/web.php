@@ -23,3 +23,6 @@ Route::post('/store-state', [DropdownController::class, 'sState'])->name('storeS
 
 Route::get('/city', [DropdownController::class, 'gCity'])->name('getCity');
 Route::post('/store-city', [DropdownController::class, 'sCity'])->name('storeCity');
+
+Route::post('/fetch-state', [DropdownController::class, 'fetchState']);
+Route::post('/fetch-city', [DropdownController::class, 'fetchCity']);
