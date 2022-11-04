@@ -93,7 +93,31 @@
               }
             });
           });
+
+          // For fetch Only cities
+
+          $('#country_id').change(function(event) {
+            var idCon = this.value;
+            // alert(idCountry);
+            $('#city_id').html('');
+            $.ajax({
+              url: "{{url('/only-city')}}",
+              type: 'POST',
+              dataType: 'json',
+              data: {country_id: idCon,_token:"{{ csrf_token() }}"},
+              success:function(response){
+                // console.log(response);
+                $('#city_id').html('<option value=""> Select City </option>');
+                $.each(response.onlycity, function(index, val) {
+                  $('#city_id').append('<option value="'+val.id+'"> '+val.city+' </option>');
+                });
+                // $('#city_id').html('<option value=""> Select City </option>');
+              }
+            });
+          });
+
         });
+
       </script>
    </body>
 </html>

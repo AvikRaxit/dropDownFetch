@@ -26,3 +26,4 @@ Route::post('/store-city', [DropdownController::class, 'sCity'])->name('storeCit
 
 Route::post('/fetch-state', [DropdownController::class, 'fetchState']);
 Route::post('/fetch-city', [DropdownController::class, 'fetchCity']);
+Route::post('/only-city', [DropdownController::class, 'onlyCity']);

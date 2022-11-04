@@ -69,4 +69,13 @@ class DropdownController extends Controller
 
         return response()->json($data);
     }
+
+    public function onlyCity(Request $request) {
+
+        $city = City::get();
+        $data['onlycity'] = $city->where('country_id', $request->country_id)->whereNull('state_id');
+
+        return response()->json($data);
+    }
+
 }
